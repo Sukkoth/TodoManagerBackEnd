@@ -4,8 +4,8 @@ const ModelService = require('../Services/ModelService');
 
 exports.index = asyncHandler(async (req, res) => {
     const TodoServices = new ModelService(Todo.find({}), req.query);
-    const todos = await TodoServices.search().get();
-    // const todos = await Todo.find({});
+    const todos = await TodoServices.filter().sort().search().get();
+    // const todos = await Todo.find({ completed: true });
     res.json({
         results: todos.length,
         data: {
